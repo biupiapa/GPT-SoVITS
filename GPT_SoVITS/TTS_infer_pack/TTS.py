@@ -143,7 +143,7 @@ class TTS_Config:
 
             
     def _load_configs(self, configs_path: str)->dict:
-        with open(configs_path, 'r') as f:
+        with open(configs_path, 'r', encoding= 'utf-8') as f:
             configs = yaml.load(f, Loader=yaml.FullLoader)
     
         return configs
