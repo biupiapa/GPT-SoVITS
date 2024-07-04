@@ -65,7 +65,7 @@ from text import cleaned_text_to_sequence
 from text.cleaner import clean_text
 from time import time as ttime
 from module.mel_processing import spectrogram_torch
-from my_utils import load_audio
+from tools.my_utils import load_audio
 from tools.i18n.i18n import I18nAuto
 
 i18n = I18nAuto()
@@ -639,10 +639,11 @@ with gr.Blocks(title="GPT-SoVITS WebUI") as app:
             button5.click(cut5, [text_inp], [text_opt])
         gr.Markdown(value=i18n("后续将支持转音素、手工修改音素、语音合成分步执行。"))
 
-app.queue(concurrency_count=511, max_size=1022).launch(
-    server_name="0.0.0.0",
-    inbrowser=True,
-    share=is_share,
-    server_port=infer_ttswebui,
-    quiet=True,
-)
+if __name__ == '__main__':
+    app.queue(concurrency_count=511, max_size=1022).launch(
+        server_name="0.0.0.0",
+        inbrowser=True,
+        share=is_share,
+        server_port=infer_ttswebui,
+        quiet=True,
+    )
